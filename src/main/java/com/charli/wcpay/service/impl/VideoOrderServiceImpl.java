@@ -12,6 +12,8 @@ import com.charli.wcpay.service.VideoOrderService;
 import com.charli.wcpay.utils.CommonUtils;
 import com.charli.wcpay.utils.HttpUtils;
 import com.charli.wcpay.utils.WXPayUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,6 +26,10 @@ import java.util.TreeMap;
 
 @Service
 public class VideoOrderServiceImpl implements VideoOrderService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private Logger dataLogger = LoggerFactory.getLogger("dataLogger");
 
     @Autowired
     private VideoMapper videoMapper;
@@ -41,6 +47,8 @@ public class VideoOrderServiceImpl implements VideoOrderService {
     // 在添加事务的情况下，当生成的订单统一下单有误时，事务会回滚，生成的订单会回滚
     @Transactional(propagation = Propagation.REQUIRED) // propagation: 传播属性
     public String save(VideoOrderDto videoOrderDto) throws Exception {
+
+        dataLogger.info("module=video_order`api=save`user_id={}`video_id={}",videoOrderDto.getUserId(),videoOrderDto.getVideoId());
 
         // 查找视频信息
         Video video = videoMapper.findById(videoOrderDto.getVideoId());

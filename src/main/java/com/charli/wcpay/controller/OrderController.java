@@ -10,6 +10,8 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
  * 订单接口
  */
@@ -28,6 +31,10 @@ import java.util.Map;
 //@RequestMapping("/user/api/v1/order")
 @RequestMapping("/api/v1/order")
 public class OrderController {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private Logger dataLogger = LoggerFactory.getLogger("dataLogger");
 
     @Autowired
     private VideoOrderService videoOrderService;
