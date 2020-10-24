@@ -89,7 +89,6 @@ public class VideoOrderServiceImpl implements VideoOrderService {
     private String unifiedOrder(VideoOrder videoOrder) throws Exception {
 
         // 生成签名
-        int i = 1/0; // 模拟事务
         SortedMap<String, String> params = new TreeMap<>();
         params.put("appid", weChatConfig.getAppId());
         params.put("mch_id", weChatConfig.getMchId());
