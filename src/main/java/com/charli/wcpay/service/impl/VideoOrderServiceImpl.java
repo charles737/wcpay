@@ -69,7 +69,6 @@ public class VideoOrderServiceImpl implements VideoOrderService {
 
         // 获取codeUrl
         String codeUrl = unifiedOrder(videoOrder);
-
         return codeUrl;
     }
 
@@ -124,7 +123,6 @@ public class VideoOrderServiceImpl implements VideoOrderService {
         if (unifiedOrderMap != null){
             return unifiedOrderMap.get("code_url");
         }
-
         return null;
     }
 }
