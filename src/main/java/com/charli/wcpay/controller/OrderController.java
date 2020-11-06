@@ -13,10 +13,8 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
@@ -28,8 +26,8 @@ import java.util.Map;
  * 订单接口
  */
 @RestController
-//@RequestMapping("/user/api/v1/order")
-@RequestMapping("/api/v1/order")
+@RequestMapping("/user/api/v1/order")
+//@RequestMapping("/api/v1/order")
 public class OrderController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -40,12 +38,14 @@ public class OrderController {
     private VideoOrderService videoOrderService;
 
     @GetMapping("add")
+    @CrossOrigin
     public void saveOrder(@RequestParam(value = "video_id", required = true)int videoId,
                               HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-//      String ip = IpUtils.getIpAddr(request);
-        int userId = 1; // 临时写死
-        String ip = "120.25.1.43";
+        String ip = IpUtils.getIpAddr(request);
+        int userId = (Integer) request.getAttribute("user_id");
+//        int userId = 1; // 临时写死
+//        String ip = "120.25.1.43";
         VideoOrderDto videoOrderDto = new VideoOrderDto();
         videoOrderDto.setUserId(userId);
         videoOrderDto.setVideoId(videoId);
