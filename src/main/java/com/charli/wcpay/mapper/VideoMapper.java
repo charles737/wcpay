@@ -24,12 +24,12 @@ public interface VideoMapper {
     @Delete("DELETE FROM video WHERE id=#{id}")
     int delete(int id);
 
-    @Insert("INSERT INTO `wechatpay`.`video`(`title`, `summary`, `cover_img`, `view_num`, " +
-            "`price`, `create_time`, `online`, `point`) VALUES (#{title}, #{summary}, #{coverImg}," +
-            " #{viewNum}, #{price}, #{createTime}, #{online}, #{point});")
     /**
      * 保存对象，获取数据库自增id
      */
+    @Insert("INSERT INTO `wechatpay`.`video`(`title`, `summary`, `cover_img`, `view_num`, " +
+            "`price`, `create_time`, `online`, `point`) VALUES (#{title}, #{summary}, #{coverImg}," +
+            " #{viewNum}, #{price}, #{createTime}, #{online}, #{point});")
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     int insert(Video video);
 }

@@ -31,7 +31,7 @@ $(function(){
 					var video = data[i];
 					var price = video.price/100;
 					var template = "<div class='col-sm-6 col-md-3'><div class='thumbnail'>"+
-					"<img src='video_cover.png' alt='通用的占位符缩略图'>"+
+					"<img src='food_cover.jpeg' alt='通用的占位符缩略图'>"+
 					"<div class='caption'><h3>"+video.title+"</h3><p>价格:"+price+"元</p>"+
 					"<p><a href='' onclick='save_order("+video.id+")' data-toggle='modal' data-target='#myModal' class='btn btn-primary' role='button'>立刻购买</a></p></div></div></div>";
 					
