@@ -1,6 +1,7 @@
 package com.charli.wcpay.utils;
 
 import java.security.MessageDigest;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -40,4 +41,24 @@ public class CommonUtils {
         }
         return null;
     }
+
+    /**
+     * 头像
+     */
+    private static final String[] headImg = {
+        "https://github.com/charles737/Img/raw/main/head_image/IMG_7279.jpg",
+            "https://github.com/charles737/Img/raw/main/head_image/IMG_7771.jpg"
+    };
+
+    /**
+     * 获取随机头像
+     * @return
+     */
+    public static String getHeadImg() {
+        int size = headImg.length;
+        Random random = new Random();
+        int index = random.nextInt(size);
+        return headImg[index];
+    }
+
 }

@@ -37,4 +37,16 @@ public interface UserMapper {
             "#{sign},#{sex},#{city},#{createTime});")
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     int save(User user);
+
+    /**
+     * 通过手机号注册
+     * @param user
+     * @return
+     */
+    @Insert("INSERT INTO `wechatpay`.`user`(`openid`, `name`, `head_img`, `phone`," +
+            " `sign`, `sex`, `city`, `create_time`)" +
+            " VALUES (#{openid},#{name},#{headImg},#{phone}," +
+            "#{sign},#{sex},#{city},#{createTime});")
+    @Options(useGeneratedKeys = true, keyProperty = "phone", keyColumn = "phone")
+    int saveByPhone(User user);
 }

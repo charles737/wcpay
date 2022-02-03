@@ -4,6 +4,7 @@ import com.charli.wcpay.config.WeChatConfig;
 import com.charli.wcpay.domain.User;
 import com.charli.wcpay.mapper.UserMapper;
 import com.charli.wcpay.service.UserService;
+import com.charli.wcpay.utils.CommonUtils;
 import com.charli.wcpay.utils.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -86,4 +87,28 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+
+    @Override
+    public int saveByPhone(Map<String, String> userInfo) {
+        User user = parseToUser(userInfo);
+        return userMapper.saveByPhone(user);
+    }
+
+    /**
+     * Map to User
+     * @param userMap
+     * @return
+     */
+    private User parseToUser(Map<String, String> userInfo) {
+
+        User user = new User();
+        user.setName(userInfo.get("name"));
+        user.setPhone(userInfo.get("phone"));
+        user.setHeadImg(CommonUtils.getHeadImg());
+        user.setCreateTime(new Date());
+
+        return user;
+    }
+
+
 }
