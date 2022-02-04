@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Map;
 
@@ -96,7 +97,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Map to User
-     * @param userMap
+     * @param userInfo
      * @return
      */
     private User parseToUser(Map<String, String> userInfo) {
@@ -105,10 +106,14 @@ public class UserServiceImpl implements UserService {
         user.setName(userInfo.get("name"));
         user.setPhone(userInfo.get("phone"));
         user.setHeadImg(CommonUtils.getHeadImg());
-        user.setCreateTime(new Date());
+        Date utilDate = new Date();
+        // 下面注释部分目前不使用。将配置中的GMT改为GMT%2B8，时间慢8小时的问题解决
+        // 将java.util.Date转为java.sql.Date存储到数据库中
+//        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        // 使用java.sql.Timestamp这个类来进行转换
+//        Timestamp t = new Timestamp(utilDate.getTime());
+        user.setCreateTime(utilDate);
 
         return user;
     }
-
-
 }
